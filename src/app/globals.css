@@ -86,6 +86,25 @@ body {
   animation: scan 1.6s var(--ease) infinite;
 }
 
+/* 트랙 이전/다음 화살표 — 아이콘 세트 없이 CSS로만 그린 화살표 */
+.chevron {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-top: 2px solid var(--cream);
+  border-right: 2px solid var(--cream);
+}
+
+.chevron-left {
+  transform: rotate(-135deg);
+  margin-left: 3px;
+}
+
+.chevron-right {
+  transform: rotate(45deg);
+  margin-right: 3px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

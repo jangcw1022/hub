@@ -201,7 +201,7 @@ export function ProjectTrack() {
     <div className="relative flex h-full w-full flex-col">
       <div
         ref={trackRef}
-        className="flex flex-1 flex-col gap-16 overflow-y-auto px-6 py-16 md:h-dvh md:flex-row md:items-stretch md:gap-8 md:overflow-x-auto md:overflow-y-hidden md:px-[16vw] md:py-0 md:[scroll-behavior:smooth] md:[scroll-snap-type:x_mandatory]"
+        className="flex flex-1 flex-col gap-16 overflow-y-auto px-6 py-16 md:h-dvh md:flex-row md:items-center md:gap-8 md:overflow-x-auto md:overflow-y-hidden md:px-[30vw] md:py-0 md:[scroll-behavior:smooth] md:[scroll-snap-type:x_mandatory]"
       >
         {projects.map((project, i) => (
           <ProjectCard
@@ -217,6 +217,26 @@ export function ProjectTrack() {
         ))}
         <ClosingSlot />
       </div>
+
+      <button
+        type="button"
+        aria-label="이전 프로젝트"
+        onClick={() => scrollToIndex(currentIndex - 1)}
+        disabled={currentIndex <= 0}
+        className="hub-card absolute left-8 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-ink/70 disabled:pointer-events-none disabled:opacity-30 md:flex"
+      >
+        <span className="chevron chevron-left" />
+      </button>
+
+      <button
+        type="button"
+        aria-label="다음 프로젝트"
+        onClick={() => scrollToIndex(currentIndex + 1)}
+        disabled={currentIndex >= projects.length - 1}
+        className="hub-card absolute right-8 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-ink/70 disabled:pointer-events-none disabled:opacity-30 md:flex"
+      >
+        <span className="chevron chevron-right" />
+      </button>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-8 hidden justify-center gap-3 md:flex">
         {projects.map((_, i) => (
