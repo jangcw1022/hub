@@ -37,7 +37,8 @@ export const projects: Project[] = [
     id: "matzip",
     name: "맛집",
     tagline: "지도 위에 나만의 맛집을 기록하는 관리 도구",
-    url: "https://matzip.example.com",
+    url: "https://review-beta-one.vercel.app",
     fallbackImage: "/previews/matzip.svg",
+    repoUrl: "https://github.com/jangcw1022/review.git",
   },
 ];
