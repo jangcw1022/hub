@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #16130f;
+  --surface: #1f1a15;
+  --line: #2b2420;
+  --cream: #f2ebe2;
+  --muted: #a89c90;
+  --amber: #e9a94c;
+  --amber-dim: #7a5c2c;
+  --glow: rgba(233, 169, 76, 0.18);
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur-base: 260ms;
+  --dur-slow: 420ms;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-cream: var(--cream);
+  --color-muted: var(--muted);
+  --color-amber: var(--amber);
+  --color-amber-dim: var(--amber-dim);
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, "Malgun Gothic", sans-serif;
+}
+
+html,
+body {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+/* 5.1 시그니처 — 앰버 빛 번짐 */
+.hub-card {
+  border: 1px solid var(--line);
+  transition:
+    border-color var(--dur-base) var(--ease),
+    box-shadow var(--dur-base) var(--ease);
+}
+
+.hub-card:hover,
+.hub-card:focus-visible {
+  border-color: var(--amber-dim);
+  box-shadow:
+    0 0 0 1px var(--amber-dim),
+    0 12px 48px -8px var(--glow);
+  outline: none;
+}
+
+/* 5.3 랜딩 진입 — 1회만 재생 */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up var(--dur-slow) var(--ease) both;
+}
+
+/* 6. 로딩 중 — 유일하게 허용되는 반복 애니메이션 */
+@keyframes scan {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(220%);
+  }
+}
+
+.scan-line {
+  animation: scan 1.6s var(--ease) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
