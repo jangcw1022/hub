@@ -129,27 +129,39 @@ export function ProjectTrack() {
     const root = trackRef.current;
     if (!root) return;
 
+    const DRAG_THRESHOLD = 5;
+    let pressed = false;
     let dragging = false;
+    let pointerId = 0;
     let startX = 0;
     let startScrollLeft = 0;
 
     const onPointerDown = (e: PointerEvent) => {
       if (e.pointerType !== "mouse") return;
       if (root.scrollWidth <= root.clientWidth) return;
-      dragging = true;
+      pressed = true;
+      pointerId = e.pointerId;
       startX = e.clientX;
       startScrollLeft = root.scrollLeft;
-      root.setPointerCapture(e.pointerId);
-      root.style.scrollSnapType = "none";
-      root.style.cursor = "grabbing";
     };
 
     const onPointerMove = (e: PointerEvent) => {
-      if (!dragging) return;
+      if (!pressed) return;
+      if (!dragging) {
+        // 클릭과 드래그를 구분: 임계값을 넘어야 드래그로 전환하고,
+        // 그때만 포인터를 캡처한다 — 즉시 캡처하면 카드 클릭의
+        // click 이벤트 타깃이 <a>가 아닌 root로 리타깃되어 링크가 죽는다.
+        if (Math.abs(e.clientX - startX) < DRAG_THRESHOLD) return;
+        dragging = true;
+        root.setPointerCapture(pointerId);
+        root.style.scrollSnapType = "none";
+        root.style.cursor = "grabbing";
+      }
       root.scrollLeft = startScrollLeft - (e.clientX - startX);
     };
 
     const endDrag = () => {
+      pressed = false;
       if (!dragging) return;
       dragging = false;
       root.style.scrollSnapType = "";

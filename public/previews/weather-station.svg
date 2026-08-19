@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
+  <rect width="1280" height="800" fill="#1F1A15"/>
+  <rect x="0.5" y="0.5" width="1279" height="799" fill="none" stroke="#2B2420" stroke-width="1"/>
+  <text x="640" y="384" text-anchor="middle" font-family="-apple-system, 'Malgun Gothic', sans-serif" font-size="56" font-weight="700" letter-spacing="-1" fill="#F2EBE2">기상관측</text>
+  <text x="640" y="436" text-anchor="middle" font-family="-apple-system, 'Malgun Gothic', sans-serif" font-size="20" letter-spacing="2" fill="#A89C90">PREVIEW</text>
+</svg>

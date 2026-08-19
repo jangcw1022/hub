@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type { Project } from "@/data/projects";
 import { useElementWidth } from "@/lib/hooks";
 
@@ -19,8 +19,7 @@ export function LivePreview({
   /** 데스크톱/태블릿에서만 true — 모바일은 항상 정적 스크린샷 */
   live: boolean;
 }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const width = useElementWidth(containerRef);
+  const [width, containerRef] = useElementWidth<HTMLDivElement>();
   const scale = width > 0 ? width / IFRAME_W : 0;
   const hasUrl = Boolean(project.url);
 
